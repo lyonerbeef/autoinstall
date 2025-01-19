@@ -34,9 +34,10 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.
 apt update && apt install -y docker-ce docker-ce-cli containerd.io
 
 # Install Draw.io
-echo "Installing Draw.io..."
-wget -qO /tmp/drawio-amd64.deb https://github.com/jgraph/drawio-desktop/releases/latest/download/drawio-amd64-20.8.16.deb
-apt install -y /tmp/drawio-amd64.deb
+#echo "Installing Draw.io..."
+#wget -qO /tmp/drawio-amd64.deb https://github.com/jgraph/drawio-desktop/releases/latest/download/drawio-amd64-20.8.16.deb
+#sudo chmod 777 ./drawio-amd64-20.8.16.deb
+#apt install -y /tmp/drawio-amd64.deb
 
 # Cleanup
 cd /
