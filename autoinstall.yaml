@@ -37,11 +37,7 @@ autoinstall:
     - qbittorrent
     - gnome-system-monitor
   late-commands:
-  # Installing rest (see install.sh)
-    - curtin in-target --target=/target -- bash -c "cp /cdrom/setup_installers.sh /tmp/setup_installers.sh"
-    - curtin in-target --target=/target -- bash -c "chmod +x /tmp/setup_installers.sh"
-    - curtin in-target --target=/target -- bash -c "/tmp/setup_installers.sh"
-    # SSH identity
-    - curtin in-target --target=/target -- bash -c "cp /cdrom/setup_ssh.sh /tmp/setup_ssh.sh"
-    - curtin in-target --target=/target -- bash -c "chmod +x /tmp/setup_ssh.sh"
-    - curtin in-target --target=/target -- bash -c "/tmp/setup_ssh.sh"
+  # Download install.sh from GitHub
+    - curtin in-target --target=/target -- bash -c "wget -O /tmp/install.sh https://raw.githubusercontent.com/lyonerbeef/autoinstall/master/install.sh"
+    - curtin in-target --target=/target -- bash -c "chmod +x /tmp/install.sh"
+    - curtin in-target --target=/target -- bash -c "/tmp/install.sh"
