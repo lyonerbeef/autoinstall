@@ -2,12 +2,12 @@
 autoinstall:
   version: 1
   identity:
-    hostname: workstation_num
+    hostname: workstation-num
     username: ben
     password: "$6$iX0ONhfIIhzvXySN$twsH1z1Lkn9V5vPfWjudXq.yerxOr77y8stWieDR7JNWTUHHP0/Wu9kAlxEq0VzK.iYTnPtICvC7w7UefmORR1"
   keyboard:
     layout: hu
-    variant: ''
+    variant: ""
     model: pc105
   locale: en_US.UTF-8
   storage:
@@ -27,7 +27,7 @@ autoinstall:
         uri: http://archive.ubuntu.com/ubuntu
     sources:
       universe:
-        source: "deb http://archive.ubuntu.com/ubuntu noble numbat"
+        source: "deb http://archive.ubuntu.com/ubuntu noble universe"
   packages:
     - git
     - curl
@@ -39,7 +39,7 @@ autoinstall:
     - net-tools
     - lm-sensors
   late-commands:
-  # Download install.sh from GitHub
     - curtin in-target --target=/target -- bash -c "wget -O /tmp/install.sh https://raw.githubusercontent.com/lyonerbeef/autoinstall/master/install.sh"
     - curtin in-target --target=/target -- bash -c "chmod +x /tmp/install.sh"
     - curtin in-target --target=/target -- bash -c "/tmp/install.sh"
+
