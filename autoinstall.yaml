@@ -1,9 +1,10 @@
+#cloud-config
 autoinstall:
   version: 1
   identity:
-    hostname: ben-MS-7D25
+    hostname: workstation_num
     username: ben
-    password: "$6$qQC4oveaA5PKmuyO$LBRHpmhCxu8nTBUDS0K04q09cILVqiQrqkGlte5y0qwwspxI4GSXTStgkhSO25axDs5uKB6dVbXDT/i/DXWnE0"
+    password: "$6$iX0ONhfIIhzvXySN$twsH1z1Lkn9V5vPfWjudXq.yerxOr77y8stWieDR7JNWTUHHP0/Wu9kAlxEq0VzK.iYTnPtICvC7w7UefmORR1"
   keyboard:
     layout: hu
     variant: ''
@@ -30,6 +31,7 @@ autoinstall:
       universe:
         source: "deb http://archive.ubuntu.com/ubuntu noble numbat"
   packages:
+    - git
     - curl
     - htop
     - vim
@@ -37,6 +39,8 @@ autoinstall:
     - vlc
     - qbittorrent
     - gnome-system-monitor
+    - net-tools
+    - lm-sensors
   late-commands:
   # Download install.sh from GitHub
     - curtin in-target --target=/target -- bash -c "wget -O /tmp/install.sh https://raw.githubusercontent.com/lyonerbeef/autoinstall/master/install.sh"
