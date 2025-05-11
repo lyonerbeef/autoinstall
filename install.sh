@@ -52,15 +52,4 @@ source ~/.bashrc
 # Cleanup
 rm -rf ./QuestaSetup-24.1std.0.1077-linux.run
 
-# Install net-tools (ifconfig, ping, etc.)
-sudo apt instlal net-tools
-
-# Install lm-sensors
-sudo apt-get install lm-sensors
-
-# Cleanup
-cd /
-echo "Cleaning up installation files..."
-rm -rf "$INSTALL_DIR"
-
 echo "All installations completed successfully!"
