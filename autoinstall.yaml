@@ -18,8 +18,6 @@ autoinstall:
     ethernets:
       eth0:
         dhcp4: true
-  user-data:
-    disable_root: false
   ssh:
     install-server: true
     allow-pw: true
@@ -35,7 +33,6 @@ autoinstall:
     - curl
     - htop
     - vim
-    - git
     - vlc
     - qbittorrent
     - gnome-system-monitor
