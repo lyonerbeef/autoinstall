@@ -1,4 +1,4 @@
-# ubuntu autoinstall
+#cloud-config
 ---
 autoinstall:
   version: 1
@@ -39,6 +39,7 @@ autoinstall:
     - gnome-system-monitor
     - net-tools
     - lm-sensors
+    - openssh-server
   late-commands:
     - curtin in-target --target=/target -- bash -c "wget -O /tmp/install.sh https://raw.githubusercontent.com/lyonerbeef/autoinstall/master/install.sh"
     - curtin in-target --target=/target -- bash -c "chmod +x /tmp/install.sh"
