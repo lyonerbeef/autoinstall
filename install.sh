@@ -1,5 +1,7 @@
 #!/bin/bash
 
+USER=$(whoami)
+
 # Update and upgrade the system
 echo "Updating and upgrading the system..."
 apt update && apt upgrade -y
@@ -12,10 +14,6 @@ apt update && apt install -y code
 
 # Install Spotify
 snap install spotify
-#echo "Installing Spotify..."
-#curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | gpg --dearmor #-o /etc/apt/trusted.gpg.d/spotify.gpg
-#echo "deb http://repository.spotify.com stable non-free" > /etc/apt/sources.list.d/spotify.list
-#apt update && apt install -y spotify-client
 
 # Install Docker
 echo "Installing Docker..."
@@ -35,21 +33,36 @@ wget -qO /tmp/drawio-amd64.deb https://github.com/jgraph/drawio-desktop/releases
 sudo chmod 777 ./drawio-amd64-20.8.16.deb
 apt install -y /tmp/drawio-amd64.deb
 
+# Install Qbittorrent
+sudo apt install dirmngr ca-certificates software-properties-common apt-transport-https
+sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable -y
+sudo apt install qbittorrent
+	
+# Install gnome-system-monitor
+sudo apt update
+sudo apt install snapd
+sudo snap install gnome-system-monitor
+
 # Install Vivado
 tar -xvzf ./Vivado2024.2.tar.gz
 ./Vivado2024.2/xsetup -a XilinxEULA,3rdPartyEULA -b Install -c vivado_2024.2_install_config.txt
-echo 'export PATH=//home/ben/xilinx/Vivado/2024.2/bin:$PATH' >> ~/.bashrc
+echo 'export PATH=//home/$USER/xilinx/Vivado/2024.2/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 # Cleanup
 rm -rf ./Vivado2024.2
 
 # Install questa
 tar -xvzf ./QuestaSetup-24.1std.0.1077-linux.tar.gz
-./QuestaSetup-24.1std.0.1077-linux.run --questa_edition questa_fse --accept_eula 1 --installdir /home/ben/altera/24.1std --mode unattended
-echo 'export LM_LICENSE_FILE=/home/ben/licenses/LR-233561_License.dat' >> ~/.bashrc
-echo 'export PATH=/home/ben/altera/24.1std/questa_fse/bin:$PATH' >> ~/.bashrc
+./QuestaSetup-24.1std.0.1077-linux.run --questa_edition questa_fse --accept_eula 1 --installdir /home/$USER/altera/24.1std --mode unattended
+echo 'export LM_LICENSE_FILE=/home/$USER/licenses/LR-233561_License.dat' >> ~/.bashrc
+echo 'export PATH=/home/$USER/altera/24.1std/questa_fse/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 # Cleanup
 rm -rf ./QuestaSetup-24.1std.0.1077-linux.run
 
-echo "All installations completed successfully!"
+# Cleanup
+cd /
+echo "Cleaning up installation files..."
+rm -rf "$INSTALL_DIR"
+
+echo "Installation completed!"
